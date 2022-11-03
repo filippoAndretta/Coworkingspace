@@ -34,7 +34,7 @@ public class SessionService {
             .sign();
         return Response
             .ok(principal.get())
-            .cookie(new NewCookie("punchclock", token))
+            .cookie(new NewCookie("coworkingspace", token))
             .header("Authorization", "Bearer " + token)
             .build();
       }
