@@ -7,8 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 public class Booking {
@@ -20,6 +23,30 @@ public class Booking {
 
     @Column(nullable = false)
     LocalDate date;
+
+    @ManyToOne(optional = false)
+    @Fetch(FetchMode.JOIN)
+    private CwSUser cwSUser;
+
+    @ManyToOne(optional = false)
+    @Fetch(FetchMode.JOIN)
+    private BookingApproval bookingApproval;
+
+    public BookingApproval getBookingApproval() {
+        return bookingApproval;
+    }
+
+    public void setBookingApproval(BookingApproval bookingApproval) {
+        this.bookingApproval = bookingApproval;
+    }
+
+    public CwSUser getCwSUser() {
+        return cwSUser;
+    }
+
+    public void setCwSUser(CwSUser cwSUser) {
+        this.cwSUser = cwSUser;
+    }
 
     public Long getId() {
         return id;

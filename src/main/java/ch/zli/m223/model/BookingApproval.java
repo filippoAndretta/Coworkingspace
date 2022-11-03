@@ -1,12 +1,19 @@
 package ch.zli.m223.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class BookingApproval {
@@ -18,6 +25,11 @@ public class BookingApproval {
 
     @Column(nullable = false)
     private Boolean approval;
+
+    @OneToMany(mappedBy = "bookingApproval")
+    @JsonIgnoreProperties("bookingApproval")
+    @Fetch(FetchMode.JOIN)
+    private Set<Booking> bookings;
 
     public Long getId() {
         return id;
