@@ -1,4 +1,7 @@
 #Finales Projekt Coworkingspace
 
-#Aenderungen Aufgabe 4
-Model Klasse Login entfernt.
+#Aenderungen Fachklassendiagramm
+#Model Klasse Login entfernt.
+
+#Aenderungen Fachklassendiagramm
+#Model Klasse User ubenannt zu Model Klasse CwSUser.java
