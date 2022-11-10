@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import javax.persistence.GenerationType;
 
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
@@ -29,6 +32,7 @@ public class CwSUser {
     @Column(nullable = false)
     private String lastname;
 
+    @Email
     @Column(nullable = false, unique = true)
     private String email;
 
@@ -39,6 +43,10 @@ public class CwSUser {
     @JsonIgnoreProperties("cwSUser")
     @Fetch(FetchMode.JOIN)
     private Set<Booking> bookings;
+
+    @Size(min = 8, max = 12, message = "Passwort muss min [{min}] Zeichen und max [{max}] Zeichen enthalten")
+    @NotBlank
+    private String password;
 
     public Long getId() {
         return id;
@@ -86,5 +94,13 @@ public class CwSUser {
 
     public void setBooking(Set<Booking> bookings) {
         this.bookings = bookings;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
