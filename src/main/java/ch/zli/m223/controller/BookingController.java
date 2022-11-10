@@ -6,6 +6,7 @@ import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Produces;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -46,6 +47,16 @@ public class BookingController {
     )
     public Booking booking(Booking booking) {
         return bookingService.createBooking(booking);
+    }
+
+    @Path("/{id}")
+    @DELETE
+    @Operation(
+        summary = "Delete an booking.",
+        description = "Delete an booking by its id."
+    )
+    public void delete(@PathParam("id") Long id) {
+        bookingService.deleteBooking(id);
     }
 
     @Path("/{id}")

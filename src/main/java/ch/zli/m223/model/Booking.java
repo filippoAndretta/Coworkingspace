@@ -63,4 +63,7 @@ public class Booking {
     public void setDate(LocalDate date) {
         this.date = date;
     }
+
+    public void setBookingApproval(boolean b) {
+    }
 }
